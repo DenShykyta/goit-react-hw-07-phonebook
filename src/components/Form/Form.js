@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContactThunk } from '../../redux/contactsThunk';
 import { getContacts } from 'redux/selectors';
 import { useState } from 'react';
 
@@ -41,7 +41,7 @@ export default function Form() {
       return;
     }
 
-    dispatch(addContact({ id: nanoid(), name, number }));
+    dispatch(addContactThunk({ id: nanoid(), name, number }));
 
     setName('');
     setNumber('');

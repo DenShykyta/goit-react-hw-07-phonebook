@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContactsThunk } from 'redux/contactsThunk';
 import Form from './Form';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
 export default function App() {
+  const { isLoading, items, error } = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
   return (
     <div
       style={{
@@ -16,7 +26,9 @@ export default function App() {
     >
       <Form />
       <Filter />
-      <ContactList />
+      {isLoading && <div>Loading...</div>}
+      {items && <ContactList />}
+      {error && <h2>{error}</h2>}
     </div>
   );
 }

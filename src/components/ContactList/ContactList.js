@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContactThunk } from '../../redux/contactsThunk';
 import { getFilteredContacts } from 'redux/selectors';
 import css from './ContactList.module.css';
 
@@ -16,7 +16,7 @@ export default function ContactList() {
           </p>
           <button
             className={css.contacts__btn}
-            onClick={() => dispatch(deleteContact(id))}
+            onClick={() => dispatch(deleteContactThunk(id))}
           >
             Del
           </button>
